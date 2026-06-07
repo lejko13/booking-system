@@ -42,7 +42,7 @@ Deno.serve(async (req) => {
           <p><strong>Telefón:</strong> ${booking.client_phone}</p>
         </div>
 
-        <p>Ak potrebuješ rezerváciu zrušiť, klikni na tlačidlo nižšie.</p>
+        <p>Ak potrebuješ rezerváciu zrušiť, klikni na tlačidlo nižšie.(AK SA VAM TLACIDLO NEZOBRAZUJE TAK KLIKINE TRI BODKY PRE ZOBRAZENIE CELEHO EMAILU...)</p>
 
         <a href="${cancelUrl}" style="display:inline-block; background:#ef4444; color:white; padding:13px 20px; border-radius:999px; text-decoration:none; font-weight:bold;">
           Zrušiť rezerváciu
