@@ -141,28 +141,7 @@ export function PageHeader({ label, title, button }) {
 }
 
 
-function StatsGrid() {
-  return (
-    <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-      {stats.map((stat) => (
-        <div
-          key={stat.title}
-          className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[var(--shadow-card)]"
-        >
-          <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-[var(--radius-md)] bg-[var(--primary-light)] text-[var(--primary)]">
-            {stat.icon}
-          </div>
 
-          <p className="text-sm font-bold text-[var(--text-secondary)]">
-            {stat.title}
-          </p>
-
-          <p className="mt-2 text-3xl font-black">{stat.value}</p>
-        </div>
-      ))}
-    </div>
-  );
-}
 
 export function BookingsCard() {
   return (
