@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import BookingStatus from "./BookingStatus";
-import {useWorkingHours} from '../context/WorkingHoursProvider'
+import { useWorkingHours } from "../context/WorkingHoursProvider";
 import {
   ChevronDown,
   User,
@@ -16,10 +16,8 @@ import { supabase } from "../lib/supabase";
 export default function BookingFormCard() {
   const [isServiceOpen, setIsServiceOpen] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
-
   const [showCalendar, setShowCalendar] = useState(false);
   const [showTimes, setShowTimes] = useState(false);
-
   const [date, setDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
 
@@ -28,8 +26,7 @@ export default function BookingFormCard() {
   const timesRef = useRef(null);
 
   const services = useServices();
-
-  const { popup, setPopup } = useWorkingHours();
+  const { setPopup } = useWorkingHours();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -57,11 +54,9 @@ export default function BookingFormCard() {
     setSelectedService(null);
     setDate("");
     setSelectedTime("");
-
     setShowCalendar(false);
     setShowTimes(false);
     setIsServiceOpen(false);
-
     formElement.reset();
   };
 
@@ -70,15 +65,14 @@ export default function BookingFormCard() {
 
     const formElement = e.currentTarget;
 
-   if (!selectedService || !date || !selectedTime) {
-  setPopup({
-    isOpen: true,
-    message: "Vyber službu, dátum a čas",
-    type: "warning",
-  });
-
-  return;
-}
+    if (!selectedService || !date || !selectedTime) {
+      setPopup({
+        isOpen: true,
+        message: "Vyber službu, dátum a čas",
+        type: "warning",
+      });
+      return;
+    }
 
     const form = new FormData(formElement);
 
@@ -96,49 +90,81 @@ export default function BookingFormCard() {
       .maybeSingle();
 
     if (existingBooking) {
-  setPopup({
-    isOpen: true,
-    message: "Tento čas je už obsadený",
-    type: "warning",
-  });
+      setPopup({
+        isOpen: true,
+        message: "Tento čas je už obsadený",
+        type: "warning",
+      });
 
-  setSelectedTime("");
+      setSelectedTime("");
+      return;
+    }
 
-  return;
-}
+    const { data: booking, error } = await supabase
+      .from("bookings")
+      .insert({
+        service_id: selectedService.id,
+        booking_date: date,
+        booking_time: selectedTime,
+        end_time: endTime,
+        client_name: form.get("name"),
+        client_phone: form.get("phone"),
+        client_email: form.get("email"),
+        message: form.get("message"),
+        status: "active",
+      })
+      .select()
+      .single();
 
-    const { error } = await supabase.from("bookings").insert({
-      service_id: selectedService.id,
-      booking_date: date,
-      booking_time: selectedTime,
-      end_time: endTime,
-      client_name: form.get("name"),
-      client_phone: form.get("phone"),
-      client_email: form.get("email"),
-      message: form.get("message"),
-      status: "active",
+    if (error) {
+      console.log(error);
+
+      setPopup({
+        isOpen: true,
+        message: "Chyba pri rezervácii",
+        type: "error",
+      });
+
+      return;
+    }
+
+    const emailResult = await supabase.functions.invoke("send-booking-email", {
+      body: {
+        booking,
+        service: selectedService,
+        cancelUrl: `${window.location.origin}/zrusit-rezervaciu/${booking.cancel_token}`,
+      },
     });
 
-  if (error) {
-  console.log(error);
+    console.log("EMAIL RESULT:", emailResult);
 
-  setPopup({
-    isOpen: true,
-    message: "Chyba pri rezervácii",
-    type: "error",
-  });
+    
+    if (emailResult.error) {
+      console.log(emailResult.error);
 
-  return;
-}
+      setPopup({
+        isOpen: true,
+        message: "Rezervácia bola vytvorená, ale email sa neposlal",
+        type: "warning",
+      });
 
-setPopup({
-  isOpen: true,
-  message: "Rezervácia bola vytvorená",
-  type: "success",
-});
+      resetForm(formElement);
+      return;
+    }
+
+    setPopup({
+      isOpen: true,
+      message: "Rezervácia bola vytvorená a email bol odoslaný",
+      type: "success",
+    });
 
     resetForm(formElement);
+
+    
   };
+
+
+  
 
   return (
     <div className="w-full max-w-[530px] h-fit overflow-visible rounded-[var(--radius-xl)] bg-[var(--surface)] px-6 pb-6 shadow-[var(--shadow-card)]">
@@ -260,19 +286,8 @@ setPopup({
         </div>
 
         <Input icon={<User size={19} />} name="name" placeholder="Meno" />
-
-        <Input
-          icon={<Phone size={19} />}
-          name="phone"
-          placeholder="Telefónne číslo"
-        />
-
-        <Input
-          icon={<Mail size={19} />}
-          name="email"
-          placeholder="Email"
-          type="email"
-        />
+        <Input icon={<Phone size={19} />} name="phone" placeholder="Telefónne číslo" />
+        <Input icon={<Mail size={19} />} name="email" placeholder="Email" type="email" />
 
         <div className="relative">
           <Pencil
