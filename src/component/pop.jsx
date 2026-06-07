@@ -43,7 +43,16 @@ export default function PopupMessage() {
   const Icon = current.icon;
 
 return (
-  <div className="fixed inset-0 z-[9999]  bg-black/40">
+<div
+  className="fixed z-[9999] bg-black/40"
+  style={{
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: "100dvh",
+  }}
+>
     <div className="absolute bottom-6 right-6 w-[calc(100%-48px)] max-w-md">
       <div
         className={`pointer-events-auto flex items-center justify-between gap-4 rounded-[var(--radius-sm)] px-5 py-4 text-white shadow-[var(--shadow-button)] ${current.className}`}
