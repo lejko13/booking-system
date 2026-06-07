@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  background: #f8fafc;
+}
+
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+
+:root {
+  /* Brand */
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #dbeafe;
+
+  --secondary: #0f172a;
+
+  /* Backgrounds */
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --surface-secondary: #f1f5f9;
+
+  /* Text */
+  --text: #0f172a;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --text-white: #ffffff;
+
+  /* Borders */
+  --border: #e2e8f0;
+
+  /* Status */
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  
+
+  --warning-light: #fef9c3;
+--warning-dark: #a16207;
+--warning-border: #fde68a;
+
+--danger-light: #fee2e2;
+--danger-dark: #991b1b;
+--danger-border: #fecaca;
+
+--primary-border: #bfdbfe;
+
+  /* Radius */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-xl: 48px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-card: 0 10px 40px rgba(15, 23, 42, 0.08);
+  --shadow-button: 0 8px 20px rgba(37, 99, 235, 0.2);
+
+  /* Layout */
+  --container: 1280px;
+  --navbar-height: 70px;
+
+  --section-x: 24px;
+  --section-y: 56px;
+
+  /* Typography */
+  --hero-size: 64px;
+  --heading-size: 32px;
+  --subheading-size: 24px;
+  --body-size: 18px;
+  --hero-size-lg: 72px;
+  --hero-size-xl: 96px;
+
+
+
+}
