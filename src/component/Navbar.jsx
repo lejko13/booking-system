@@ -32,12 +32,7 @@ export default function Navbar() {
             Prihlásenie
           </Link>
 
-          <Link
-            to="/dashboard"
-            className="rounded-full bg-[var(--secondary)] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--primary)]"
-          >
-            Dashboard
-          </Link>
+        
         </div>
 
         <button

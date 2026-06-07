@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
-import DashboardPage from "./pages/DashboardPage";
+
 import PricingSection from './pages/PricingSection'
 import Navbar from './component/Navbar'
 import ContactPage from './pages/ContactPage'
@@ -21,7 +21,7 @@ export default function App() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/admin" element={<AdminPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/dashboard" element={<DashboardPage />} />
+
 
       <Route path="/kontakt" element={<ContactPage />} />
       <Route path="/cennik" element={<PricingSection />} />

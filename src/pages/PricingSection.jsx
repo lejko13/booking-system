@@ -150,6 +150,9 @@ export default function PricingSection() {
             </ul>
 
             <button
+             onClick={() =>
+    window.open("https://www.leofudaly.com", "_blank")
+  }
               className={`
                 mt-auto flex h-[56px] w-full items-center justify-center gap-2
                 rounded-2xl text-[16px] font-black transition duration-300

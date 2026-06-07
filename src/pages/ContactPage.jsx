@@ -8,34 +8,38 @@ export default function ContactPage() {
 
       <section className="mx-auto grid max-w-[var(--container)] gap-10 px-[var(--section-x)] py-[var(--section-y)] lg:grid-cols-[0.9fr_1.1fr]">
         <div>
+          <div className="mb-5 inline-flex items-center gap-2 rounded-[var(--radius-full)] bg-[var(--primary-light)] px-4 py-2 text-sm font-semibold text-[var(--primary)]">
+            <Phone size={16} />
+            Kontakt
+          </div>
 
-           <div className="mb-5 inline-flex items-center gap-2 rounded-[var(--radius-full)] bg-[var(--primary-light)] px-4 py-2 text-sm font-semibold text-[var(--primary)]">
-
-  <Phone size={16} />
-    Kontakt
-        </div>
-          
-
-          <h1 className=" max-w-4xl
-    text-[var(--hero-size)]
-    font-black
-    leading-[0.95]
-    tracking-[-0.04em]
-    text-[30px]
-   md:text-[48px]
-    xl:text-[55px]">
+          <h1 className="max-w-4xl text-[30px] font-black leading-[0.95] tracking-[-0.04em] text-[var(--text)] md:text-[48px] xl:text-[55px]">
             Poďme spolu vytvoriť rezervačný systém.
           </h1>
 
           <p className="mt-6 max-w-xl text-[var(--body-size)] leading-8 text-[var(--text-secondary)]">
-            Napíš mi, ak chceš rezervačný systém prenajať, implementovať do webu,
-            alebo vytvoriť celý web aj so systémom.
+            Napíš mi, ak chceš rezervačný systém prenajať, implementovať do
+            webu, alebo vytvoriť celý web aj so systémom.
           </p>
 
           <div className="mt-8 space-y-4">
-            <ContactItem icon={<Mail size={22} />} title="Email" text="leo.fudaly@gmail.com" />
-            <ContactItem icon={<Phone size={22} />} title="Telefón" text="Doplníš neskôr" />
-            <ContactItem icon={<MapPin size={22} />} title="Lokalita" text="Slovensko / online" />
+            <ContactItem
+              icon={<Mail size={22} />}
+              title="Email"
+              text="leo.fudaly@gmail.com"
+            />
+
+            <ContactItem
+              icon={<Phone size={22} />}
+              title="Telefón"
+              text="Doplníš neskôr"
+            />
+
+            <ContactItem
+              icon={<MapPin size={22} />}
+              title="Lokalita"
+              text="Slovensko / online"
+            />
           </div>
         </div>
 
@@ -49,8 +53,20 @@ export default function ContactPage() {
             method="POST"
             className="mt-6 space-y-4"
           >
-            <input type="hidden" name="_subject" value="Nová správa z rezervačného webu" />
+            <input
+              type="hidden"
+              name="_subject"
+              value="Nová správa z webu - rezervačný systém"
+            />
+
             <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+
+            <input
+              type="hidden"
+              name="_next"
+              value="https://www.leofudaly.com"
+            />
 
             <Input name="name" placeholder="Tvoje meno" />
             <Input name="email" type="email" placeholder="Tvoj email" />
@@ -58,12 +74,22 @@ export default function ContactPage() {
 
             <select
               name="service"
+              required
               className="h-[58px] w-full rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-secondary)] px-5 text-[17px] font-semibold text-[var(--text)] outline-none focus:border-[var(--primary)]"
             >
               <option value="">Čo potrebuješ?</option>
-              <option value="prenajom-systemu">Prenájom rezervačného systému</option>
-              <option value="implementacia">Implementácia do webu</option>
-              <option value="web-system">Web + rezervačný systém</option>
+
+              <option value="Prenájom rezervačného systému">
+                Prenájom rezervačného systému
+              </option>
+
+              <option value="Implementácia do webu">
+                Implementácia do webu
+              </option>
+
+              <option value="Web + rezervačný systém">
+                Web + rezervačný systém
+              </option>
             </select>
 
             <textarea

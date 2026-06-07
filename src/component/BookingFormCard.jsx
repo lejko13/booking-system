@@ -138,7 +138,7 @@ export default function BookingFormCard() {
 
     console.log("EMAIL RESULT:", emailResult);
 
-    
+
     if (emailResult.error) {
       console.log(emailResult.error);
 
@@ -167,7 +167,7 @@ export default function BookingFormCard() {
   
 
   return (
-    <div className="w-full max-w-[530px] h-fit overflow-visible rounded-[var(--radius-xl)] bg-[var(--surface)] px-6 pb-6 shadow-[var(--shadow-card)]">
+    <div className="w-full w-full lg:max-w-[530px] h-fit overflow-visible rounded-[var(--radius-xl)] bg-[var(--surface)] px-6 pb-6 shadow-[var(--shadow-card)]">
       <form onSubmit={handleSubmit} className="mt-5 space-y-3 h-full">
         <div ref={serviceRef} className="relative">
           <button
