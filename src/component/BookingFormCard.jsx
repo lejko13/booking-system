@@ -21,6 +21,8 @@ export default function BookingFormCard() {
   const [date, setDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
 
+const WEBSITE_URL = "https://booking-system-three-rosy.vercel.app";
+
   const serviceRef = useRef(null);
   const calendarRef = useRef(null);
   const timesRef = useRef(null);
@@ -132,7 +134,7 @@ export default function BookingFormCard() {
       body: {
         booking,
         service: selectedService,
-        cancelUrl: `${window.location.origin}/zrusit-rezervaciu/${booking.cancel_token}`,
+          cancelUrl: `${WEBSITE_URL}/zrusit-rezervaciu/${booking.cancel_token}`,
       },
     });
 
