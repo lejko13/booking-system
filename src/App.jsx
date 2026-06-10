@@ -10,10 +10,12 @@ import AdminPage from "./pages/AdminPage";
 import PopupMessage from './component/pop'
 import ScrollToTop from './hooks/ScrollToTop'
 import CancelBookingPage from "./pages/CancelBookingPage";
-
+import DemoNotice from './component/demonotice'
 export default function App() {
   return (
     <>
+<DemoNotice></DemoNotice>
+
       <ScrollToTop />
           <Navbar />
     <Routes>
